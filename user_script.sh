@@ -186,7 +186,9 @@ case $choice in
 
 	;;
 	"List Users")
-		cat /etc/passwd | cut -d : -f1
+		cut -d : -f1 /etc/passwd > /tmp/userlist.txt
+          	whiptail --scrolltext --textbox /tmp/userlist.txt 20 60
+		rm -f /tmp/userlist.txt
 	;;
 	"Add Group")
                 grp_name=$(whiptail --inputbox "Enter Groupname" 8 39 --title "Group Add" 3>&1 1>&2 2>&3)
@@ -273,7 +275,9 @@ case $choice in
 
 	;;
 	"list Groups")
-		cut -d : -f1 /etc/group
+		cut -d : -f1 /etc/group > /tmp/grouplist.txt
+                whiptail --scrolltext --textbox /tmp/grouplist.txt 20 60
+                rm -f /tmp/grouplist.txt
 	;;
 	"Disable User")
 		usr_name=$(whiptail --inputbox "Enter Username" 8 39 --title "User Disable" 3>&1 1>&2 2>&3)
